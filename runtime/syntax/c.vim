@@ -167,6 +167,7 @@ else
     syn region	cCppParen	transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@cParenGroup,cErrInBracket,cParen,cBracket,cString,@Spell
     syn match	cParenError	display "[\])]"
     syn match	cErrInParen	display contained "<%\|%>"
+    syn match	cErrInBracket	display contained "[);]"
     syn region	cBracket	transparent start='\[\|<::\@!' end=']\|:>' contains=ALLBUT,@cParenGroup,cErrInParen,cCppParen,cCppBracket,@cStringGroup,@Spell
   else
     syn region	cParen		transparent start='(' end=')' end='}'me=s-1 contains=ALLBUT,cBlock,@cParenGroup,cCppParen,cErrInBracket,cCppBracket,@cStringGroup,@Spell
@@ -174,11 +175,11 @@ else
     syn region	cCppParen	transparent start='(' skip='\\$' excludenl end=')' end='$' contained contains=ALLBUT,@cParenGroup,cErrInBracket,cParen,cBracket,cString,@Spell
     syn match	cParenError	display "[\])]"
     syn match	cErrInParen	display contained "[\]{}]\|<%\|%>"
+    syn match	cErrInBracket	display contained "[);{}]\|<%\|%>"
     syn region	cBracket	transparent start='\[\|<::\@!' end=']\|:>' end='}'me=s-1 contains=ALLBUT,cBlock,@cParenGroup,cErrInParen,cCppParen,cCppBracket,@cStringGroup,@Spell
   endif
   " cCppBracket: same as cParen but ends at end-of-line; used in cDefine
   syn region	cCppBracket	transparent start='\[\|<::\@!' skip='\\$' excludenl end=']\|:>' end='$' contained contains=ALLBUT,@cParenGroup,cErrInParen,cParen,cBracket,cString,@Spell
-  syn match	cErrInBracket	display contained "[);{}]\|<%\|%>"
 endif
 
 if s:ft ==# 'c' || exists("cpp_no_cpp11")
